@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import { Layout, Empty, Alert, Space } from 'antd';
 
-
 import Header from '../components/header';
 import Search from '../components/search';
 import ItemList from '../components/item-list';
@@ -34,7 +33,7 @@ export default class App extends Component {
     fetch(`${this.url}${this.searchMovie}?api_key=${this.apiKey}&query=${this.state.searchMovies}`)
       .then((data) => data.json())
       .then((data) => {
-        console.log( ...data.results)
+        console.log(...data.results);
         this.setState({
           moviesData: [...data.results],
           totalResults: [data.total_results],
@@ -113,30 +112,30 @@ export default class App extends Component {
     );
 
     return (
-      <GenresProvider value={this.state.genres}>
-        <Layout className="layout">
-          <Content style={{ padding: '0 50px' }}>
-            <Header setActive={this.setActive} active={active} />
+      <>
+        <GenresProvider value={this.state.genres}>
+          <Layout className="layout">
+            <Content style={{ padding: '0 50px' }}>
+              <Header setActive={this.setActive} active={active} />
 
-            {active === 'search' ? (
-              <Search onHandleSubmit={this.onHandleSubmit} onHandleChange={onHandleChangeDebounced} />
-            ) : null}
+              {active === 'search' ? (
+                <Search onHandleSubmit={this.onHandleSubmit} onHandleChange={onHandleChangeDebounced} />
+              ) : null}
 
-
-            <div className="site-layout-content" style={{ background: '#ffffff', padding: 12 }}>
-              {!error ? (
-                <>
-                  {searchEmpty ? empty : noEmpty}
-                  {totalResults > 20 ? pagination : ''}
-                </>
-              ) : (
-                errorVpn
-              )}
-            </div>
-            
-          </Content>
-        </Layout>
-      </GenresProvider>
+              <div className="site-layout-content" style={{ background: '#ffffff', padding: 12 }}>
+                {!error ? (
+                  <>
+                    {searchEmpty ? empty : noEmpty}
+                    {totalResults > 20 ? pagination : ''}
+                  </>
+                ) : (
+                  errorVpn
+                )}
+              </div>
+            </Content>
+          </Layout>
+        </GenresProvider>
+      </>
     );
   }
 }

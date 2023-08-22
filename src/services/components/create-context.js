@@ -1,5 +1,5 @@
-import React, {createContext} from 'react';
+import React from 'react';
 
 const { Provider: GenresProvider, Consumer: GenresConsumer } = React.createContext();
- const GlobalContext = createContext();
-export { GenresProvider, GenresConsumer, GlobalContext };
+
+export { GenresProvider, GenresConsumer };

@@ -1,10 +1,17 @@
 {
-    "singleQuote": true,
-    "parser": "flow",
-    "trailingComma": "es5",
-    "endOfLine": "auto",
-    "printWidth": 120,
-    "semi": true,
-    "bracketSpacing": true
-  }
-  
+  "singleQuote": true,
+  "parser": "flow",
+  "trailingComma": "es5",
+  "endOfLine": "auto",
+  "printWidth": 120,
+  "semi": true,
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "parser": "css"
+      }
+    }
+  ]
+}

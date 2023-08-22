@@ -5,7 +5,6 @@ import { Tag, Rate } from 'antd';
 import { GenresConsumer } from '../components/create-context';
 import Spinner from '../components/spinner';
 
-
 export default class MoviesCard extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +13,6 @@ export default class MoviesCard extends Component {
       starsRate: 0,
     };
   }
-
-
 
   handleImageLoaded = () => {
     this.setState({ imgLoading: true });
@@ -40,47 +37,49 @@ export default class MoviesCard extends Component {
         ? 'https://www.formulatv.com/images/carteltvmovies_m1.jpg'
         : `https://image.tmdb.org/t/p/w500${path}`;
     return (
-      <GenresConsumer>
-        {(genres) => {
-          return (
-            <div className="ant-card">
-              <div className="ant-item">
-                <div className="ant-image">
-                  {!imgLoading && <Spinner />}
-                  <img
-                    src={poster}
-                    alt="movie-poster"
-                    style={{ display: imgLoading ? 'block' : 'none' }}
-                    onLoad={this.handleImageLoaded}
-                  />
-                </div>
-                <div className="ant-card__all">
-                  <div className="ant-info">
-                    <h3>{title}</h3>
-                    <div className="ant-grade" style={{ border: `2px solid ${color}` }}>
-                      <span>{voteAverage.toFixed(1)}</span>
+      <>
+        <GenresConsumer>
+          {(genres) => {
+            return (
+              <div className="ant-card">
+                <div className="ant-item">
+                  <div className="ant-image">
+                    {!imgLoading && <Spinner />}
+                    <img
+                      src={poster}
+                      alt="movie-poster"
+                      style={{ display: imgLoading ? 'block' : 'none' }}
+                      onLoad={this.handleImageLoaded}
+                    />
+                  </div>
+                  <div className="ant-card__all">
+                    <div className="ant-info">
+                      <h3>{title}</h3>
+                      <div className="ant-grade" style={{ border: `2px solid ${color}` }}>
+                        <span>{voteAverage.toFixed(1)}</span>
+                      </div>
                     </div>
+                    <div>
+                      <span className="ant-date">{date ? format(new Date(date), 'MMMM d, yyyy') : 'none'}</span>
+                      <span className="ant-genres">
+                        {this.props.genre.map((el) => {
+                          const textGenre = genres.find((gen) => {
+                            if (gen.id === el) return gen.name;
+                          });
+                          // console.log(genres);
+                          return <Tag key={el}> {textGenre.name}</Tag>;
+                        })}
+                      </span>
+                    </div>
+                    <div className="ant-overview">{overview.slice(0, 160)}...</div>
+                    <Rate allowHalf defaultValue={0} count={10} />
                   </div>
-                  <div>
-                    <span className="ant-date">{date ? format(new Date(date), 'MMMM d, yyyy') : 'none'}</span>
-                    <span className="ant-genres">
-                      {this.props.genre.map((el) => {
-                        const textGenre = genres.find((gen) => {
-                          if (gen.id === el) return gen.name;
-                        });
-                        // console.log(genres);
-                        return <Tag key={el}> {textGenre.name}</Tag>;
-                      })}
-                    </span>
-                  </div>
-                  <div className="ant-overview">{overview.slice(0, 160)}...</div>
-                  <Rate allowHalf defaultValue={0} count={10} />
                 </div>
               </div>
-            </div>
-          );
-        }}
-      </GenresConsumer>
+            );
+          }}
+        </GenresConsumer>
+      </>
     );
   }
 }

@@ -1,14 +1,9 @@
 import React from 'react';
 
-
 const SearchTerm = React.memo((props) => {
   return (
     <div className="search">
-      <form
-        className="ant-form"
-        action=""
-        onSubmit={(e) => props.onHandleSubmit(e)}
-      >
+      <form className="ant-form" action="" onSubmit={(e) => props.onHandleSubmit(e)}>
         <input
           className="ant-input"
           placeholder="Type to search..."
@@ -24,5 +19,5 @@ const SearchTerm = React.memo((props) => {
     </div>
   );
 });
-
+SearchTerm.displayName = 'SearchTerm';
 export default SearchTerm;

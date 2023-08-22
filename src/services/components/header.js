@@ -2,11 +2,9 @@ import React from 'react';
 import { Tabs } from 'antd';
 import PropTypes from 'prop-types';
 
-
-
 const Header = (props) => {
   const { active, setActive } = props;
- 
+
   const arr = [
     {
       key: 'search',
