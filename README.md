@@ -1,7 +1,3 @@
 https://movie-app-e6ru.vercel.app/
-123
-<<<<<<< Updated upstream
-123
-=======
-111111
->>>>>>> Stashed changes
+123 
+12345
